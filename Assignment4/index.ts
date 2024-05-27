@@ -53,12 +53,6 @@ updateNameAndEmail(newStudent,toChangeValues)
 // Create a type which takes input type and returns Yes if passed type is string otherwise No
 
 type IsString<T> = T extends string ? "Yes" : "No";
-function IsStringType<T>(value :T): void{
-    type t = IsString<typeof value>
-    const output : t = (typeof value === 'string' ? 'Yes' : 'No') as t;
-    console.log(output)    
-}
-
 
 let a="Usha";
 let r1: IsString<typeof a>="Yes"; //cant assign no as  a is String
@@ -66,8 +60,6 @@ let b=12
 let r2: IsString<typeof b>="No"; //cant assign Yes as b is not String
 
 
-IsStringType("Hello");
-IsStringType(123);
 
 
 
