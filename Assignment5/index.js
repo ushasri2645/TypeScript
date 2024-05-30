@@ -1,4 +1,6 @@
+"use strict";
 //Create any type with 5-6 properties each of different type of values and few as optional properties and Create another type from it with all properties as required (Without using typescript default Required typ
+Object.defineProperty(exports, "__esModule", { value: true });
 var studentRequired = {
     name: "usha",
     age: 21,
@@ -40,27 +42,7 @@ printByConcatenating(studentNameEmail);
 // }
 // Output: "name: User, email: user@gmail.com, city: Hyderabad, state: Telangana"
 // For the above problem use util function with namespace
-var Utils;
-(function (Utils) {
-    function printObjects(objs) {
-        var result = '';
-        function printObject(obj) {
-            for (var property in obj) {
-                var value = obj[property];
-                if (typeof value === 'object') {
-                    printObject(value);
-                }
-                else {
-                    result += "".concat(property, " : ").concat(value, ", ");
-                }
-            }
-        }
-        printObject(objs);
-        result = result.slice(0, -2);
-        return result;
-    }
-    Utils.printObjects = printObjects;
-})(Utils || (Utils = {}));
+var utils_1 = require("./utils");
 var newStudent4 = {
     name: "Usha",
     age: 20,
@@ -73,4 +55,4 @@ var newStudent4 = {
     },
     phone: 123456789,
 };
-console.log(Utils.printObjects(newStudent4));
+console.log(utils_1.Utils.PrintObjects(newStudent4));
