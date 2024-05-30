@@ -108,12 +108,7 @@ console.log(Lead1);
 
 const printLeads = (allEmployees : EmployeeHeirarchy[]) : void  => {
     function checkLead(employee : EmployeeHeirarchy) : boolean{
-        for(var i=0;i<allEmployees.length;i++){
-            if(allEmployees[i].employeeLead && allEmployees[i].employeeLead===employee){
-                return true;
-            }
-        }
-        return false;
+        return allEmployees.some(e => e.employeeLead === employee);
     }
     allEmployees.forEach(employee=>{
         if(checkLead(employee)==true){
