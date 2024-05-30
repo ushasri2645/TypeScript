@@ -61,12 +61,7 @@ console.log(Lead1);
 //Write a function to iterate through employees and print {Employee.name} is Lead , if they are they are lead otherwise {Employee.name} is not lead
 var printLeads = function (allEmployees) {
     function checkLead(employee) {
-        for (var i = 0; i < allEmployees.length; i++) {
-            if (allEmployees[i].employeeLead && allEmployees[i].employeeLead === employee) {
-                return true;
-            }
-        }
-        return false;
+        return allEmployees.some(function (e) { return e.employeeLead === employee; });
     }
     allEmployees.forEach(function (employee) {
         if (checkLead(employee) == true) {
