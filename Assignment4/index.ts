@@ -17,12 +17,14 @@ type Student = {
 }
 
 
-type toChange = Pick<Student,"name" | "email">
 
+type toChange = Pick<Student,"name" | "email">
 const toChangeValues: toChange = {
     name : "UshaSri",
     email:"ushaa@gmail.com"
 }
+
+
 
 const newStudent : Student = {
     name : "Usha",
@@ -37,30 +39,32 @@ const newStudent : Student = {
 
 
 
-function updateNameAndEmail(newStudent: Student,toChangeValues: toChange){
-    for(const key in toChangeValues){
-        newStudent[`${key}`] = toChangeValues[key];
-    }
-    console.log(newStudent)
+function updateNameAndEmailViaPick(newStudent: Student,toChangeValues: toChange){
+    return {...newStudent, ...toChangeValues}
 }
 
 
-updateNameAndEmail(newStudent,toChangeValues)
-
-
+console.log(updateNameAndEmailViaPick(newStudent,toChangeValues))
 
 //task2 
 // Create a type which takes input type and returns Yes if passed type is string otherwise No
 
 type IsString<T> = T extends string ? "Yes" : "No";
+function IsStringType<T>(value :T): void{
+    type t = IsString<typeof value>
+    const output : t = (typeof value === 'string' ? 'Yes' : 'No') as t;
+    console.log(output)    
+}
 
-let a="Usha";
-let r1: IsString<typeof a>="Yes"; //cant assign no as  a is String
+
+let a1="Usha";
+let r1: IsString<typeof a1>="Yes"; //cant assign no as  a is String
 let b=12
 let r2: IsString<typeof b>="No"; //cant assign Yes as b is not String
 
 
-
+IsStringType("Hello");
+IsStringType(123);
 
 
 //task3
@@ -91,37 +95,25 @@ const Lead1 : EmployeeHeirarchy = {
     employeeID : 125,
     employeeLead : Lead2
 }
-const newEmployee : EmployeeHeirarchy = {
-    employeeName : "Usha2",
-    employeeAge : 21,
-    employeeID : 126,
-    employeeLead : Lead1
-}
 
-const allEmployees : EmployeeHeirarchy[] = [topLead, Lead1, Lead2, newEmployee]
-console.log(newEmployee);
+
+const allEmployees : EmployeeHeirarchy[] = [topLead, Lead2, Lead1]
+console.log(Lead1);
 
 
 //task4
 //Write a function to iterate through employees and print {Employee.name} is Lead , if they are they are lead otherwise {Employee.name} is not lead
 
-const leadArray = new Array<number>;
-allEmployees.forEach(employee=>{
-    if(employee.employeeLead){
-        leadArray.push(employee.employeeLead.employeeID);
-    }
-})
 
 
 const printLeads = (allEmployees : EmployeeHeirarchy[]) : void  => {
     function checkLead(employee : EmployeeHeirarchy) : boolean{
-        let islead = false;
-        leadArray.forEach(id => {
-            if(id===employee.employeeID){
-                islead = true
+        for(var i=0;i<allEmployees.length;i++){
+            if(allEmployees[i].employeeLead && allEmployees[i].employeeLead===employee){
+                return true;
             }
-        });
-        return islead;
+        }
+        return false;
     }
     allEmployees.forEach(employee=>{
         if(checkLead(employee)==true){
