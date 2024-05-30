@@ -74,23 +74,7 @@ printByConcatenating(studentNameEmail)
 // For the above problem use util function with namespace
 
 
-let result2='';
-
-namespace Utils{
-    export function PrintObjects(objs : requiredStudent) : string{
-        for(const property in objs){
-            if(typeof objs[property] == 'object' ){
-                result2 += `${PrintObjects(objs[property])}, `;
-            }
-            else{
-                result2 += `${property} : ${objs[property]}, `;
-            }
-        }
-        result2=result2.slice(0,-2);
-        return result2;
-}
-}
-
+import {Utils} from './utils'
 const newStudent4 : requiredStudent = {
     name: "Usha",
     age: 20,
