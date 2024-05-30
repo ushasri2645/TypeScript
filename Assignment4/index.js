@@ -14,12 +14,9 @@ var newStudent = {
     }
 };
 function updateNameAndEmail(newStudent, toChangeValues) {
-    for (var key in toChangeValues) {
-        newStudent["".concat(key)] = toChangeValues[key];
-    }
-    console.log(newStudent);
+    return {...newStudent, ...toChangeValues}
 }
-updateNameAndEmail(newStudent, toChangeValues);
+console.log(updateNameAndEmail(newStudent, toChangeValues));
 function IsStringType(value) {
     var output = (typeof value === 'string' ? 'Yes' : 'No');
     console.log(output);
@@ -47,31 +44,19 @@ var Lead1 = {
     employeeID: 125,
     employeeLead: Lead2
 };
-var newEmployee = {
-    employeeName: "Usha2",
-    employeeAge: 21,
-    employeeID: 126,
-    employeeLead: Lead1
-};
-var allEmployees = [topLead, Lead1, Lead2, newEmployee];
-console.log(newEmployee);
+var allEmployees = [topLead, Lead2, Lead1];
+console.log(Lead1);
 //task4
 //Write a function to iterate through employees and print {Employee.name} is Lead , if they are they are lead otherwise {Employee.name} is not lead
-var leadArray = new Array;
-allEmployees.forEach(function (employee) {
-    if (employee.employeeLead) {
-        leadArray.push(employee.employeeLead.employeeID);
-    }
-});
+
 var printLeads = function (allEmployees) {
     function checkLead(employee) {
-        var islead = false;
-        leadArray.forEach(function (id) {
-            if (id === employee.employeeID) {
-                islead = true;
+        for(var i=0;i<allEmployees.length;i++){
+            if(allEmployees[i].employeeLead && allEmployees[i].employeeLead===employee){
+                return true;
             }
-        });
-        return islead;
+        }
+        return false;
     }
     allEmployees.forEach(function (employee) {
         if (checkLead(employee) == true) {
